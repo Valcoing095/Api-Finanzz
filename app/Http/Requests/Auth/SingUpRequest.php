@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\auth;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthRequest extends FormRequest
+class SingUpRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,19 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'=>'required|string',
-            'password'=>'required|string'
+            "name"=>'required|string',
+            "email"=>'required|string|unique:users,email',
+            "password"=>'required|string'
+
+        ];
+    }
+
+
+    public function attributes():array{
+        return[
+            "name"=>'Nombre de usuario',
+            "email"=>'Correo electrónico',
+            "password"=>'Contraseña'
         ];
     }
 }
