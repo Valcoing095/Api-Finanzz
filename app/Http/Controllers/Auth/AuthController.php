@@ -49,14 +49,12 @@ class AuthController extends Controller
 
         $user = $request->user();
 
-        // Crear el token personal
         $tokenResult = $user->createToken($user->email . '-' . now());
 
         return response()->json([
             'access_token' => $tokenResult->plainTextToken,
             'token_type' => 'Bearer',
             'id' => $user->id,
-            // Puedes establecer una expiración personalizada si lo implementas tú mismo
             'expires_at' => null
         ], 201);
     }
