@@ -18,6 +18,10 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::prefix('client')->controller(ClientController::class)->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/','newClient')->name('client.new');
+        Route::post('/','store')->name('client.new');
+        Route::get('/','index')->name('client.all');
+        Route::get('/{client}','show')->name('client.get');
+        Route::put('update/{client}','update')->name('client.update');
+        Route::delete('delete/{client}','destroy')->name('client.delete');
     });
 });
