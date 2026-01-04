@@ -18,6 +18,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::prefix('client')->controller(ClientController::class)->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/','newClient')->name('client.new');
+        Route::post('/newClient','newClient')->name('client.new');
+        Route::get('/','getClients')->name('client.getAll');
     });
 });
